@@ -8,6 +8,8 @@ from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic import DeleteView
+from django.urls import reverse_lazy
 
 from .models import LoginModel
 
@@ -33,8 +35,16 @@ class LoginUpdateView(UpdateView):
     template_name = 'login_update.html' 
     success_url='/success/' # Specify your template name
     fields = '__all__'  # Use '__all__'     
-      
 
+class LoginDeleteView(DeleteView) :  
+      model=LoginModel
+      template_name='loginform_delete.html'
+      success_url = reverse_lazy('login_list')
+
+      def get_context_data(self, **kwargs):
+            context=super().get_context_data(**kwargs)  
+            context['username'] = 'confirm delete login object'
+            return context 
 
 
       
