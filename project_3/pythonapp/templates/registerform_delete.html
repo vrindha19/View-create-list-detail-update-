@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Delete object</title>
+</head>
+<body>
+    <h>Register Delete object </h>
+
+    <p> Are you sure you want to delete</p>
+
+    <ul>
+        <li>
+            <strong>name:</strong> {{ object.name }}<br>
+            <strong>username:</strong> {{ object.username }}
+            <strong>email:</strong> {{ object.email }}
+            <strong>password:</strong> {{ object.password }}
+            <strong>confirmpassword:</strong> {{ object.confirmpassword }}
+
+        </li>
+    </ul>
+    <form method="post"action="{% url 'register_delete' object.pk %}">
+
+            {% csrf_token %}
+
+        	    <input type="submit" value="Confirm Delete">
+        	</form>
+        	
+         	<p><a href="{% url 'register_list' %}">Cancel</a></p>
+         	</body>
